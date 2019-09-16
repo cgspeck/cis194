@@ -3,11 +3,10 @@ type Peg = String
 type Move = (Peg, Peg)
 
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
-hanoi n pa pb pc 
-  | n == 1 = []
-  | otherwise = (pa, pb) : (pa, pc) : (pb, pc) : hanoi (n -1) pa pb pc
-
--- _hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
--- _hanoi n pa pb pc 
---   | n == 0 = []
---   | otherwise = (pa, pb) : hanoi (n -1) pa pb pc
+hanoi 0 _ _ _ = []
+hanoi 1 source dest _ = [(source, dest)]
+hanoi n source dest temp =
+    let nSubtractOne = subtract 1 n
+    in hanoi nSubtractOne source temp dest ++
+       hanoi 1 source dest temp ++
+       hanoi nSubtractOne temp dest source
