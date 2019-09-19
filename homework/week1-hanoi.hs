@@ -4,9 +4,8 @@ type Move = (Peg, Peg)
 
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
 hanoi 0 _ _ _ = []
-hanoi 1 source dest _ = [(source, dest)]
 hanoi n source dest temp =
-    let nSubtractOne = subtract 1 n
+    let nSubtractOne = n -1
     in hanoi nSubtractOne source temp dest ++
-       hanoi 1 source dest temp ++
+       [(source, dest)] ++
        hanoi nSubtractOne temp dest source
