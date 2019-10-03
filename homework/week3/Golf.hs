@@ -1,9 +1,9 @@
 module Golf where
   skips :: [a] -> [[a]]
   skips x = map (takeEvery x 1) [1..length x]
-  
+
   takeEvery :: [a] -> Int -> Int -> [a]
-  takeEvery (x:xs) curPos takePos 
+  takeEvery (x:xs) curPos takePos
     | (mod curPos takePos) == 0 = x : takeEvery xs (curPos + 1) takePos
     | otherwise = takeEvery xs (curPos + 1) takePos
   takeEvery [] _ _ = []
@@ -22,9 +22,12 @@ module Golf where
   _boilerplate = undefined
 
   -- look through [x] and count digits equal to num_to_tally
-  _findCount :: [Integer] -> Int -> Int
-  _findCount [x:xs] num_to_tally = _
+  _findCount :: [Integer] -> Integer -> Int
+  _findCount xs num_to_tally = length (filter (\x -> x == num_to_tally) xs)
 
-    -- look through [x], if x > threshold return a '*' otherwise a ' '
-  _countToLine :: [Integer] -> Int -> [Char]
-  _countToLine [x:xs] threshold = _
+  --   -- look through [x], if x >= threshold return a '*' otherwise a ' '
+  _countToLine :: [Integer] -> Integer -> [Char]
+  _countToLine (x:xs) threshold
+    | x >= threshold = '*' : _countToLine xs threshold
+    | otherwise = ' ' : _countToLine xs threshold
+  _countToLine [] _ = []
