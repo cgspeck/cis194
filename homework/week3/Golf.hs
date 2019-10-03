@@ -17,15 +17,12 @@ module Golf where
   histogram :: [Integer] -> String
   -- histogram xs = _countToLine ( _findCount xs 0 ) 0
   histogram xs =
-    let counts = _findCounts xs in
+    let counts = map (_findCount xs) [0..9] in
       unlines $ (map(_countToLine(counts)) $ reverse [1..maximum $ counts]) ++ _boilerplate
 
   -- stuff that goes at the bottom, i.e. --- and column labels
   _boilerplate :: [String]
   _boilerplate = ["==========", "0123456789"]
-
-  _findCounts :: [Integer] -> [Integer]
-  _findCounts xs = map (_findCount xs) [0..9]
 
   -- look through [x] and count digits equal to num_to_tally
   _findCount :: [Integer] -> Integer -> Integer
