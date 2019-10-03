@@ -14,9 +14,9 @@ module Golf where
     | otherwise = localMaxima ms
   localMaxima _ = []
 
-  histogram :: [Integer] -> [String]
+  histogram :: [Integer] -> String
   -- histogram xs = _countToLine ( _findCount xs 0 ) 0
-  histogram xs = map(_countToLine(map (_findCount xs) [0..9])) (reverse [1..9]) ++ _boilerplate
+  histogram xs = unlines $ map(_countToLine(map (_findCount xs) [0..9])) (reverse [1..9]) ++ _boilerplate
 
   -- stuff that goes at the bottom, i.e. --- and column labels
   _boilerplate :: [String]
