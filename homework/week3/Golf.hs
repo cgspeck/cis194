@@ -26,9 +26,9 @@ module Golf where
 
   -- look through [x] and count digits equal to num_to_tally
   _findCount :: [Integer] -> Integer -> Integer
-  _findCount xs num_to_tally = toInteger ( length (filter (\x -> x == num_to_tally) xs))
+  _findCount xs num_to_tally = toInteger $ length $ filter (\x -> x == num_to_tally) xs
 
-  --   -- look through [x], if x >= threshold return a '*' otherwise a ' '
+  -- look through [x], if x >= threshold return a '*' otherwise a ' '
   _countToLine :: [Integer] -> Integer -> [Char]
   _countToLine (x:xs) threshold
     | x >= threshold = '*' : _countToLine xs threshold
