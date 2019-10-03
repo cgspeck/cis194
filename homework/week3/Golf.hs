@@ -16,11 +16,14 @@ module Golf where
 
   histogram :: [Integer] -> String
   -- histogram xs = _countToLine ( _findCount xs 0 ) 0
-  histogram xs = unlines $ map(_countToLine(map (_findCount xs) [0..9])) (reverse [1..9]) ++ _boilerplate
+  histogram xs = unlines $ map(_countToLine(_findCounts xs)) (reverse [1..maximum (_findCounts xs)]) ++ _boilerplate
 
   -- stuff that goes at the bottom, i.e. --- and column labels
   _boilerplate :: [String]
   _boilerplate = ["==========", "0123456789"]
+
+  _findCounts :: [Integer] -> [Integer]
+  _findCounts xs = map (_findCount xs) [0..9]
 
   -- look through [x] and count digits equal to num_to_tally
   _findCount :: [Integer] -> Integer -> Integer
