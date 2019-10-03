@@ -14,16 +14,17 @@ module Golf where
     | otherwise = localMaxima ms
   localMaxima _ = []
 
-  histogram :: [Integer] -> String
-  histogram = undefined
+  histogram :: [Integer] -> [Integer]
+  -- histogram xs = _countToLine ( _findCount xs 0 ) 0
+  histogram xs = map (_findCount xs) [0..9]
 
   -- stuff that goes at the bottom, i.e. --- and column labels
   _boilerplate :: [Char]
-  _boilerplate = undefined
+  _boilerplate = "==========\n0123456789\n"
 
   -- look through [x] and count digits equal to num_to_tally
-  _findCount :: [Integer] -> Integer -> Int
-  _findCount xs num_to_tally = length (filter (\x -> x == num_to_tally) xs)
+  _findCount :: [Integer] -> Integer -> Integer
+  _findCount xs num_to_tally = toInteger ( length (filter (\x -> x == num_to_tally) xs))
 
   --   -- look through [x], if x >= threshold return a '*' otherwise a ' '
   _countToLine :: [Integer] -> Integer -> [Char]
