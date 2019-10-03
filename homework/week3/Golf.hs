@@ -14,13 +14,13 @@ module Golf where
     | otherwise = localMaxima ms
   localMaxima _ = []
 
-  histogram :: [Integer] -> [Integer]
+  histogram :: [Integer] -> [String]
   -- histogram xs = _countToLine ( _findCount xs 0 ) 0
-  histogram xs = map (_findCount xs) [0..9]
+  histogram xs = map(_countToLine(map (_findCount xs) [0..9])) (reverse [1..9]) ++ _boilerplate
 
   -- stuff that goes at the bottom, i.e. --- and column labels
-  _boilerplate :: [Char]
-  _boilerplate = "==========\n0123456789\n"
+  _boilerplate :: [String]
+  _boilerplate = ["==========", "0123456789"]
 
   -- look through [x] and count digits equal to num_to_tally
   _findCount :: [Integer] -> Integer -> Integer
