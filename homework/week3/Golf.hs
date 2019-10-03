@@ -16,7 +16,9 @@ module Golf where
 
   histogram :: [Integer] -> String
   -- histogram xs = _countToLine ( _findCount xs 0 ) 0
-  histogram xs = unlines $ (map(_countToLine(_findCounts xs)) $ reverse [1..maximum $ _findCounts xs]) ++ _boilerplate
+  histogram xs =
+    let counts = _findCounts xs in
+      unlines $ (map(_countToLine(counts)) $ reverse [1..maximum $ counts]) ++ _boilerplate
 
   -- stuff that goes at the bottom, i.e. --- and column labels
   _boilerplate :: [String]
