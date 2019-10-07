@@ -10,3 +10,10 @@ fun1 :: [Integer] -> Integer
 -- fun1 xs = foldl (subtract 2) 1 (filter(even xs))
 -- fun1 xs = foldl'  ((*) . (\x -> x - 2)) 1 (filter even xs)
 fun1 = foldl' ((*) . subtract 2) 1 . filter even
+
+-- hint: iterate and takeWhile
+fun_2 :: Integer -> Integer
+fun_2 1 = 0
+fun_2 n
+  | even n = n + fun_2 (n `div` 2)
+  | otherwise = fun_2 (3 * n + 1)
