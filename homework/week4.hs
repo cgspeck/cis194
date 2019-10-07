@@ -8,4 +8,5 @@ fun_1 (x:xs)
 
 fun1 :: [Integer] -> Integer
 -- fun1 xs = foldl (subtract 2) 1 (filter(even xs))
-fun1 xs = foldl'  ((*) . (\x -> x - 2)) 1 (filter even xs)
+-- fun1 xs = foldl'  ((*) . (\x -> x - 2)) 1 (filter even xs)
+fun1 = foldl' ((*) . subtract 2) 1 . filter even
