@@ -9,4 +9,4 @@ fun1 (x:xs)
 
 -- don't forget to do the multiplication once this is working
 fun1 :: [Integer] -> Integer
-fun1 = foldl 1 (subtract 2) takeWhile(even)
+fun1 xs = foldl (subtract 2) 1 (filter(even xs))
